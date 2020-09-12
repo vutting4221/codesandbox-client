@@ -14,6 +14,7 @@ import {
   NotSyncedIcon,
   UndoIcon,
   UploadFileIcon,
+  DuplicateIcon,
 } from '../../icons';
 import EditIcons from './EditIcons';
 import EntryIcons from './EntryIcons';
@@ -37,8 +38,9 @@ interface IEntryProps {
   discardModuleChanges?: (shortid: string, title: string) => void;
   setCurrentModule?: (id: string) => void;
   connectDragSource?: (node: JSX.Element) => JSX.Element;
-  onCreateDirectoryClick?: () => boolean | void;
+  onCreateDirectoryClick?: (shortid: string, title: string) => boolean | void;
   onCreateModuleClick?: () => boolean | void;
+  onDuplicateModuleClick?: (shortid: string, title: string) => boolean | void;
   onUploadFileClick?: () => boolean | void;
   onClick?: () => void;
   markTabsNotDirty?: () => void;
@@ -66,6 +68,7 @@ const Entry: React.FC<IEntryProps> = ({
   connectDragSource,
   discardModuleChanges,
   onCreateModuleClick,
+  onDuplicateModuleClick,
   onCreateDirectoryClick,
   onUploadFileClick,
   deleteEntry,
@@ -109,6 +112,9 @@ const Entry: React.FC<IEntryProps> = ({
   const deleteAction = () =>
     deleteEntry ? deleteEntry(shortid, title) : false;
 
+  const duplicateAction = () =>
+    onDuplicateModuleClick ? onDuplicateModuleClick(shortid, title) : false;
+
   const discardModuleChangesAction = () =>
     discardModuleChanges ? discardModuleChanges(shortid, title) : false;
 
@@ -146,6 +152,11 @@ const Entry: React.FC<IEntryProps> = ({
         title: 'Create File',
         action: onCreateModuleClick,
         icon: AddFileIcon,
+      },
+      onDuplicateModuleClick && {
+        title: 'Duplicate File',
+        action: duplicateAction,
+        icon: DuplicateIcon,
       },
       onCreateDirectoryClick && {
         title: 'Create Directory',
@@ -236,6 +247,9 @@ const Entry: React.FC<IEntryProps> = ({
                   onCreateDirectory={onCreateDirectoryClick}
                   onUploadFile={onUploadFileClick}
                   onDiscardChanges={isNotSynced && discardModuleChangesAction}
+                  onDuplicateModuleClick={
+                    onDuplicateModuleClick && duplicateAction
+                  }
                   onDelete={deleteEntry && deleteAction}
                   onEdit={rename && renameAction}
                   active={active}

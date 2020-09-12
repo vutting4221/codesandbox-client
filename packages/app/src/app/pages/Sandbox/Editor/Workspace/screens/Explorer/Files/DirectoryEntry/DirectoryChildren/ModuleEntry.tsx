@@ -13,6 +13,7 @@ interface IModuleEntryProps {
   store?: any;
   signals?: any;
   markTabsNotDirty?: () => void;
+  onDuplicateModuleClick?: (shortid: string, title: string) => void;
   depth?: number;
   renameModule?: (title: string, moduleShortid: string) => void;
   deleteEntry?: (shortid: string, title: string) => void;
@@ -34,6 +35,7 @@ const ModuleEntry: React.FC<IModuleEntryProps> = React.memo(
     depth,
     readonly,
     renameModule,
+    onDuplicateModuleClick,
     deleteEntry,
     discardModuleChanges,
     getModulePath,
@@ -66,6 +68,7 @@ const ModuleEntry: React.FC<IModuleEntryProps> = React.memo(
         type={type || 'function'}
         rename={renameModule}
         deleteEntry={deleteEntry}
+        onDuplicateModuleClick={onDuplicateModuleClick}
         isNotSynced={isNotSynced}
         renameValidator={renameValidator}
         setCurrentModule={setCurrentModule}

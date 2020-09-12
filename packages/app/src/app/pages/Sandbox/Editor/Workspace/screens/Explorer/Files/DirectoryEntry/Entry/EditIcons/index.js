@@ -11,6 +11,7 @@ import {
   UploadFileIcon,
   DownloadIcon,
   UndoIcon,
+  DuplicateIcon,
   // eslint-disable-next-line import/extensions
 } from '../../../icons.tsx';
 
@@ -27,6 +28,7 @@ function EditIcons({
   hovering,
   onDelete,
   onDiscardChanges,
+  onDuplicateModuleClick,
   onEdit,
   onCreateFile,
   onCreateDirectory,
@@ -65,6 +67,13 @@ function EditIcons({
                 <Tooltip content="Discard Changes">
                   <Icon onClick={handleClick(onDiscardChanges)}>
                     <UndoIcon />
+                  </Icon>
+                </Tooltip>
+              )}
+              {onDuplicateModuleClick && (
+                <Tooltip content="Duplicate File">
+                  <Icon onClick={handleClick(onDuplicateModuleClick)}>
+                    <DuplicateIcon />
                   </Icon>
                 </Tooltip>
               )}

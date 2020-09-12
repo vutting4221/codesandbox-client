@@ -1,6 +1,6 @@
 import {
   getChildren as calculateChildren,
-  inDirectory
+  inDirectory,
 } from '@codesandbox/common/lib/sandbox/modules';
 import { Directory, Module } from '@codesandbox/common/lib/types';
 import { useOvermind } from 'app/overmind';
@@ -35,7 +35,7 @@ const getFiles = async (files: File[] | FileList): Promise<parsedFiles> => {
         // @ts-ignore
         returnedFiles[file.path || file.name] = {
           dataURI,
-          type: file.type
+          type: file.type,
         };
       })
   );
@@ -91,15 +91,15 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
   depth = 0,
   getModulePath,
   canDrop,
-  title: directoryTitle
+  title: directoryTitle,
 }) => {
   const {
     state: {
       isLoggedIn,
       editor: {
         currentSandbox: { modules, directories, privacy },
-        shouldDirectoryBeOpen
-      }
+        shouldDirectoryBeOpen,
+      },
     },
     actions: {
       files: {
@@ -109,11 +109,11 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
         directoryRenamed,
         directoryDeleted,
         moduleDeleted,
-        filesUploaded
+        filesUploaded,
       },
-      editor: { moduleSelected, moduleDoubleClicked, discardModuleChanges }
+      editor: { moduleSelected, moduleDoubleClicked, discardModuleChanges },
     },
-    reaction
+    reaction,
   } = useOvermind();
 
   const [creating, setCreating] = React.useState<ItemTypes>(null);
@@ -127,7 +127,8 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
       initializeProperties({
         onCreateModuleClick,
         onCreateDirectoryClick,
-        onUploadFileClick
+        onUploadFileClick,
+        onDuplicateModuleClick,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -170,7 +171,7 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
     (_, title: string) => {
       moduleCreated({
         title,
-        directoryShortid: shortid
+        directoryShortid: shortid,
       });
 
       resetState();
@@ -211,9 +212,9 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
         onConfirm: () => {
           closeModals();
           moduleDeleted({
-            moduleShortid
+            moduleShortid,
           });
-        }
+        },
       });
     },
     [closeModals, moduleDeleted]
@@ -230,7 +231,7 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
     (_, title: string) => {
       directoryCreated({
         title,
-        directoryShortid: shortid
+        directoryShortid: shortid,
       });
       resetState();
     },
@@ -247,7 +248,7 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
 
       filesUploaded({
         files,
-        directoryShortid: shortid
+        directoryShortid: shortid,
       });
     };
 
@@ -275,9 +276,9 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
         onConfirm: () => {
           closeModals();
           directoryDeleted({
-            directoryShortid
+            directoryShortid,
           });
-        }
+        },
       });
     },
     [closeModals, directoryDeleted]
@@ -296,13 +297,28 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
         onConfirm: () => {
           closeModals();
           discardModuleChanges({
-            moduleShortid
+            moduleShortid,
           });
-        }
+        },
       });
     },
     [closeModals, discardModuleChanges]
   );
+
+  const onDuplicateModuleClick = ( // React.useCallback(
+    moduleShortid: string,
+    moduleName: string
+  ) => {
+    console.log('aaaa', moduleShortid, moduleName);
+    // moduleCreated({
+    //   title,
+    //   directoryShortid: shortid,
+    // });
+
+    resetState();
+  };
+  //  [moduleCreated, resetState, shortid]
+  // );
 
   const toggleOpen = React.useCallback(() => setOpen(!open), [open]);
 
@@ -390,6 +406,7 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
             depth={depth}
             readonly={readonly}
             renameModule={renameModule}
+            onDuplicateModuleClick={onDuplicateModuleClick}
             parentShortid={shortid}
             renameValidator={validateModuleTitle}
             deleteEntry={confirmDeleteModule}
@@ -417,7 +434,7 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
 
 const FILES_TO_IGNORE = [
   '.DS_Store', // macOs
-  'Thumbs.db' // Windows
+  'Thumbs.db', // Windows
 ];
 
 const entryTarget = {
@@ -437,18 +454,18 @@ const entryTarget = {
 
         props.signals.files.filesUploaded({
           files,
-          directoryShortid: props.shortid
+          directoryShortid: props.shortid,
         });
       });
     } else if (sourceItem.directory) {
       props.signals.files.directoryMovedToDirectory({
         shortid: sourceItem.shortid,
-        directoryShortid: props.shortid
+        directoryShortid: props.shortid,
       });
     } else {
       props.signals.files.moduleMovedToDirectory({
         moduleShortid: sourceItem.shortid,
-        directoryShortid: props.shortid
+        directoryShortid: props.shortid,
       });
     }
   },
@@ -463,7 +480,7 @@ const entryTarget = {
     if (props.root) return true;
 
     return !inDirectory(props.directories, source.shortid, props.shortid);
-  }
+  },
 };
 
 function collectTarget(connectMonitor, monitor: DropTargetMonitor) {
@@ -474,7 +491,7 @@ function collectTarget(connectMonitor, monitor: DropTargetMonitor) {
     // You can ask the monitor about the current drag state:
     isOver: monitor.isOver({ shallow: true }),
     canDrop: monitor.canDrop(),
-    itemType: monitor.getItemType()
+    itemType: monitor.getItemType(),
   };
 }
 

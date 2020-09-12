@@ -14,6 +14,7 @@ interface IDirectoryChildrenProps {
   setCurrentModule?: (id: string) => void;
   parentShortid?: string;
   deleteEntry?: (shortid: string, title: string) => void;
+  onDuplicateModuleClick?: (shortid: string, title: string) => void;
   isInProjectView?: boolean;
   markTabsNotDirty?: () => void;
   discardModuleChanges?: (shortid: string, title: string) => void;
@@ -37,6 +38,7 @@ const DirectoryChildren: React.FC<IDirectoryChildrenProps> = ({
   discardModuleChanges,
   getModulePath,
   renameValidator,
+  onDuplicateModuleClick,
 }) => {
   const {
     state: { isLoggedIn, editor: editorState },
@@ -97,6 +99,7 @@ const DirectoryChildren: React.FC<IDirectoryChildrenProps> = ({
           getModulePath={getModulePath}
           renameValidator={renameValidator}
           isActive={m.shortid === currentModuleShortid}
+          onDuplicateModuleClick={onDuplicateModuleClick}
         />
       ))}
     </div>
