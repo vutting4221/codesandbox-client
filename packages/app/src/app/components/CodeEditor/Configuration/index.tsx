@@ -3,7 +3,7 @@ import { TextOperation } from 'ot';
 import { Module } from '@codesandbox/common/lib/types';
 import getUI from '@codesandbox/common/lib/templates/configuration/ui';
 import getType from 'app/utils/get-type';
-import EntryIcons from 'app/pages/Sandbox/Editor/Workspace/Files/DirectoryEntry/Entry/EntryIcons';
+import EntryIcons from 'app/pages/Sandbox/Editor/Workspace/screens/Explorer/Files/DirectoryEntry/Entry/EntryIcons';
 import Tooltip from '@codesandbox/common/lib/components/Tooltip';
 import { ConfigurationFile } from '@codesandbox/common/lib/templates/configuration/types';
 
