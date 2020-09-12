@@ -305,20 +305,22 @@ const DirectoryEntry: React.FunctionComponent<Props> = ({
     [closeModals, discardModuleChanges]
   );
 
-  const onDuplicateModuleClick = ( // React.useCallback(
+  const onDuplicateModuleClick = (
     moduleShortid: string,
     moduleName: string
   ) => {
-    console.log('aaaa', moduleShortid, moduleName);
-    // moduleCreated({
-    //   title,
-    //   directoryShortid: shortid,
-    // });
-
-    resetState();
+    const code = modules.find(m => m.shortid === moduleShortid)?.code;
+    const lastIndex = moduleName.lastIndexOf('.');
+    const [name, extension] = [
+      moduleName.substr(0, lastIndex),
+      moduleName.substr(lastIndex),
+    ];
+    moduleCreated({
+      title: `${name}-duplicate${extension}`,
+      directoryShortid: shortid,
+      code,
+    });
   };
-  //  [moduleCreated, resetState, shortid]
-  // );
 
   const toggleOpen = React.useCallback(() => setOpen(!open), [open]);
 
