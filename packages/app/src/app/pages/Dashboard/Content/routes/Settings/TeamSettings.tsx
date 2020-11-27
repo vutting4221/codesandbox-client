@@ -279,6 +279,24 @@ export const TeamSettings = () => {
                   Created by {created.username}
                 </Text>
               </Stack>
+              {activeWorkspaceAuthorization ===
+                TeamMemberAuthorization.Admin && (
+                <Button
+                  marginTop={2}
+                  css={css({
+                    padding: 0,
+                    textDecoration: 'underline',
+                    width: 'auto',
+                  })}
+                  variant="link"
+                  disabled={loading}
+                  onClick={() =>
+                    actions.modalOpened({ modal: 'deleteWorkspace' })
+                  }
+                >
+                  Delete Workspace
+                </Button>
+              )}
             </Card>
 
             <Card style={{ backgroundColor: 'white' }}>
@@ -312,23 +330,13 @@ export const TeamSettings = () => {
               })}
               size={4}
             >
-              Members{' '}
-              {activeWorkspaceAuthorization !==
-                TeamMemberAuthorization.Read && (
-                <IconButton
-                  css={css({ marginLeft: 2 })}
-                  size={12}
-                  title="Copy Invite URL"
-                  name="link"
-                  onClick={onCopyInviteUrl}
-                />
-              )}
+              Members
             </Text>
 
             <Stack
               as="form"
               onSubmit={inviteLoading ? undefined : onInviteSubmit}
-              css={{ display: 'flex', flexGrow: 1, maxWidth: 320 }}
+              css={{ display: 'flex', flexGrow: 1, maxWidth: 480 }}
             >
               <UserSearchInput
                 inputValue={inviteValue}
@@ -344,6 +352,16 @@ export const TeamSettings = () => {
               >
                 Add Member
               </Button>
+              {activeWorkspaceAuthorization !==
+                TeamMemberAuthorization.Read && (
+                <Button
+                  variant="secondary"
+                  onClick={onCopyInviteUrl}
+                  style={{ width: 'auto', marginLeft: 8 }}
+                >
+                  Copy Invite URL
+                </Button>
+              )}
             </Stack>
           </Stack>
           <div>

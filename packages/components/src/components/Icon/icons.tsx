@@ -620,3 +620,80 @@ export const frozen = props => (
     />
   </Element>
 );
+
+export const add = props => (
+  <svg width={10} height={10} fill="none" viewBox="0 0 8 8" {...props}>
+    <g clipPath="url(#clip0)">
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M4 7.07a3 3 0 100-6 3 3 0 000 6zm-.2-5h.4v1.8H6v.4H4.2v1.8h-.4v-1.8H2v-.4h1.8v-1.8z"
+        clipRule="evenodd"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0">
+        <path fill="currentColor" d="M0 0H8V8H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const close = props => (
+  <svg width={10} height={10} fill="none" viewBox="0 0 8 8" {...props}>
+    <path
+      fill="#F24E62"
+      fillRule="evenodd"
+      d="M4.099 2.135c1.06 0 1.92.866 1.92 1.935 0 .433-.14.832-.378 1.154L2.953 2.517c.32-.24.717-.382 1.146-.382zm-1.542.78l2.687 2.709c-.32.24-.716.382-1.145.382-1.06 0-1.92-.867-1.92-1.936 0-.432.14-.832.378-1.154zM4.1 1.57a2.49 2.49 0 012.48 2.5c0 1.38-1.11 2.5-2.48 2.5a2.49 2.49 0 01-2.481-2.5c0-1.38 1.11-2.5 2.48-2.5z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
+
+export const comment = props => (
+  <Element
+    as="svg"
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16H0V8Z"
+      fill="currentColor"
+    />
+  </Element>
+);
+
+export const responsive = props => (
+  <Element
+    as="svg"
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4.25011 0.999999C4.25011 0.447714 4.69782 0 5.25011 0H13.2501C13.8024 0 14.2501 0.447715 14.2501 1V12.3333C14.2501 12.8856 13.8024 13.3333 13.2501 13.3333H7.49655C7.49881 13.3059 7.49997 13.2781 7.49997 13.25V4.75C7.49997 4.19772 7.05225 3.75 6.49997 3.75H4.25011V0.999999ZM0.5 4.50001C0.223858 4.50001 0 4.72387 0 5.00001V14.5C0 14.7762 0.223858 15 0.5 15H6.25C6.52614 15 6.75 14.7762 6.75 14.5V5.00001C6.75 4.72387 6.52614 4.50001 6.25 4.50001H0.5Z"
+      fill="currentColor"
+    />
+  </Element>
+);
+
+export const spinner = props => (
+  <Element
+    as="svg"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M10 0.673631C9.09074 0.241691 8.0736 0 7 0C3.13401 0 0 3.13401 0 7C0 10.866 3.13401 14 7 14C10.5265 14 13.4439 11.3923 13.9291 8H12.917C12.441 10.8377 9.973 13 7 13C3.68629 13 1 10.3137 1 7C1 3.68629 3.68629 1 7 1C8.09286 1 9.11748 1.29218 10 1.80269V0.673631Z"
+      fill="currentColor"
+    />
+  </Element>
+);
