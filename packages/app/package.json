@@ -167,7 +167,7 @@
     "onigasm": "^2.2.1",
     "ot": "^0.0.15",
     "overmind": "^25.0.2",
-    "overmind-graphql": "^5.0.2",
+    "overmind-graphql": "^7.0.0",
     "overmind-react": "^26.0.2",
     "path-browserify": "1.0.1",
     "phoenix": "^1.5.3",
