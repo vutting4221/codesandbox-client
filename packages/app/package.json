@@ -171,7 +171,7 @@
     "overmind-react": "^26.0.2",
     "path-browserify": "1.0.1",
     "phoenix": "^1.5.3",
-    "postcss": "^7.0.26",
+    "postcss": "^8.2.10",
     "postcss-selector-parser": "^2.2.3",
     "posthtml": "^0.11.3",
     "posthtml-parser": "^0.4.1",
