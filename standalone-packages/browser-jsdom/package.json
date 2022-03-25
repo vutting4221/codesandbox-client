@@ -6,13 +6,17 @@
   "license": "MIT",
   "scripts": {
     "generate": "node index.js",
-    "move": "cp -R out/* ../../packages/app/static/js"
+    "move": "cp -R out/* ../../packages/app/static/js",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
-    "jsdom": "^16.2.2"
+    "jsdom": "^16.2.2",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "browserify": "^16.5.1",
     "terser": "^4.8.0"
-  }
+  },
+  "snyk": true
 }
