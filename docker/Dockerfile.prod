@@ -1,4 +1,4 @@
-FROM node:9
+FROM node:gallium-buster
 LABEL maintainer "Ives van Hoorne"
 
 COPY package.json /app/package.json
